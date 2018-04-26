@@ -100,6 +100,7 @@ function CommandVerify(cmd) {
 }
 
 function ExecJsonCommand(json) {
+    console.log(json);
     var type = json.type;
     var data = json.data;
     // control setting format: 'control-[type]'
