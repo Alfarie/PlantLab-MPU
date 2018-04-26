@@ -1,0 +1,26 @@
+{
+  "name": "Control",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "node src/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-json-csv": "0.0.3",
+    "jsonwebtoken": "^8.2.0",
+    "moment": "^2.21.0",
+    "path": "^0.12.7",
+    "rxjs": "^5.5.7",
+    "serialport": "^6.1.1",
+    "socket.io": "^2.0.4",
+    "sqlite3": "^4.0.0"
+  }
+}

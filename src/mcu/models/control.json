@@ -1,0 +1,29 @@
+{
+    "ch": 1,
+    "mode": 0,
+    "sensor": 0,
+    "manual": {
+        "status": 0
+    },
+    "timer": {
+        "size": 3,
+        "mode":0,
+        "list": [ [0,60], [120,180], [300,360]]
+    },
+    "setpoint":{
+        "setpoint": 3.5,
+        "working": 15,
+        "detecting": 15
+    },
+    "setbound": {
+        "upper": 40,
+        "lower": 60
+    },
+    "irrigation": {
+        "soil_upper": 60,
+        "soil_lower": 40,
+        "par_accum": 1.0,
+        "working": 30,
+        "mode": 0
+    }
+}
