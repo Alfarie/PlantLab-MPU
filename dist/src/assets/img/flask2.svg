@@ -1,0 +1,111 @@
+<svg class="lds-flask" width="200px"  height="200px"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: none;"><defs>
+<clipPath id="lds-flask-cpid-b92508e1ddf6a" clipPathUnits="userSpaceOnUse">
+<rect x="0" y="50" width="100" height="50"></rect>
+</clipPath>
+<pattern id="lds-flask-patid-12fa24bda485d" patternUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+<rect x="0" y="0" width="100" height="100" fill="#f47e60"></rect><circle cx="11" cy="0" r="3" fill="#e15b64" transform="translate(0 59.6568)">
+<animateTransform attributeName="transform" type="translate" values="0 129;0 -29" keyTimes="0;1" dur="3s" begin="-2.55s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="44" cy="0" r="2" fill="#e15b64" transform="translate(0 100.063)">
+<animateTransform attributeName="transform" type="translate" values="0 114;0 -14" keyTimes="0;1" dur="3s" begin="-1.56s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="56" cy="0" r="3" fill="#e15b64" transform="translate(0 42.6127)">
+<animateTransform attributeName="transform" type="translate" values="0 145;0 -45" keyTimes="0;1" dur="3s" begin="-2.85s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="50" cy="0" r="3" fill="#e15b64" transform="translate(0 26.5321)">
+<animateTransform attributeName="transform" type="translate" values="0 109;0 -9" keyTimes="0;1" dur="3s" begin="-0.33s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="74" cy="0" r="2" fill="#e15b64" transform="translate(0 -8.28316)">
+<animateTransform attributeName="transform" type="translate" values="0 129;0 -29" keyTimes="0;1" dur="3s" begin="-0.84s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="99" cy="0" r="2" fill="#e15b64" transform="translate(0 46.2455)">
+<animateTransform attributeName="transform" type="translate" values="0 115;0 -15" keyTimes="0;1" dur="3s" begin="-2.82s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="98" cy="0" r="2" fill="#e15b64" transform="translate(0 22.6725)">
+<animateTransform attributeName="transform" type="translate" values="0 136;0 -36" keyTimes="0;1" dur="3s" begin="-0.21s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="63" cy="0" r="2" fill="#e15b64" transform="translate(0 44.8592)">
+<animateTransform attributeName="transform" type="translate" values="0 139;0 -39" keyTimes="0;1" dur="3s" begin="-2.82s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="93" cy="0" r="2" fill="#e15b64" transform="translate(0 122.946)">
+<animateTransform attributeName="transform" type="translate" values="0 151;0 -51" keyTimes="0;1" dur="3s" begin="-1.65s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="20" cy="0" r="3" fill="#e15b64" transform="translate(0 77.6786)">
+<animateTransform attributeName="transform" type="translate" values="0 103;0 -3" keyTimes="0;1" dur="3s" begin="-1.95s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="16" cy="0" r="3" fill="#e15b64" transform="translate(0 94.4168)">
+<animateTransform attributeName="transform" type="translate" values="0 129;0 -29" keyTimes="0;1" dur="3s" begin="-1.89s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="36" cy="0" r="2" fill="#e15b64" transform="translate(0 90.2124)">
+<animateTransform attributeName="transform" type="translate" values="0 127;0 -27" keyTimes="0;1" dur="3s" begin="-1.95s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="17" cy="0" r="2" fill="#e15b64" transform="translate(0 20.2322)">
+<animateTransform attributeName="transform" type="translate" values="0 118;0 -18" keyTimes="0;1" dur="3s" begin="-0.39s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="52" cy="0" r="3" fill="#e15b64" transform="translate(0 72.5877)">
+<animateTransform attributeName="transform" type="translate" values="0 116;0 -16" keyTimes="0;1" dur="3s" begin="-2.22s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="8" cy="0" r="2" fill="#e15b64" transform="translate(0 28.8771)">
+<animateTransform attributeName="transform" type="translate" values="0 147;0 -47" keyTimes="0;1" dur="3s" begin="-0.06s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="63" cy="0" r="3" fill="#e15b64" transform="translate(0 91.5704)">
+<animateTransform attributeName="transform" type="translate" values="0 144;0 -44" keyTimes="0;1" dur="3s" begin="-2.07s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="51" cy="0" r="3" fill="#e15b64" transform="translate(0 106.626)">
+<animateTransform attributeName="transform" type="translate" values="0 133;0 -33" keyTimes="0;1" dur="3s" begin="-1.71s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="8" cy="0" r="3" fill="#e15b64" transform="translate(0 -15.332)">
+<animateTransform attributeName="transform" type="translate" values="0 134;0 -34" keyTimes="0;1" dur="3s" begin="-0.9s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="13" cy="0" r="3" fill="#e15b64" transform="translate(0 47.0168)">
+<animateTransform attributeName="transform" type="translate" values="0 129;0 -29" keyTimes="0;1" dur="3s" begin="-2.79s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="11" cy="0" r="3" fill="#e15b64" transform="translate(0 125.632)">
+<animateTransform attributeName="transform" type="translate" values="0 127;0 -27" keyTimes="0;1" dur="3s" begin="-1.26s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="90" cy="0" r="3" fill="#e15b64" transform="translate(0 93.6947)">
+<animateTransform attributeName="transform" type="translate" values="0 137;0 -37" keyTimes="0;1" dur="3s" begin="-1.98s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="57" cy="0" r="3" fill="#e15b64" transform="translate(0 8.36983)">
+<animateTransform attributeName="transform" type="translate" values="0 108;0 -8" keyTimes="0;1" dur="3s" begin="-0.81s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="39" cy="0" r="2" fill="#e15b64" transform="translate(0 5.34833)">
+<animateTransform attributeName="transform" type="translate" values="0 152;0 -52" keyTimes="0;1" dur="3s" begin="-0.39s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="88" cy="0" r="3" fill="#e15b64" transform="translate(0 10.1747)">
+<animateTransform attributeName="transform" type="translate" values="0 137;0 -37" keyTimes="0;1" dur="3s" begin="-0.42s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="10" cy="0" r="3" fill="#e15b64" transform="translate(0 -1.51897)">
+<animateTransform attributeName="transform" type="translate" values="0 113;0 -13" keyTimes="0;1" dur="3s" begin="-0.96s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="81" cy="0" r="2" fill="#e15b64" transform="translate(0 71.7794)">
+<animateTransform attributeName="transform" type="translate" values="0 148;0 -48" keyTimes="0;1" dur="3s" begin="-2.4s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="40" cy="0" r="3" fill="#e15b64" transform="translate(0 -30.5739)">
+<animateTransform attributeName="transform" type="translate" values="0 151;0 -51" keyTimes="0;1" dur="3s" begin="-0.93s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="98" cy="0" r="3" fill="#e15b64" transform="translate(0 106.179)">
+<animateTransform attributeName="transform" type="translate" values="0 130;0 -30" keyTimes="0;1" dur="3s" begin="-1.68s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="59" cy="0" r="2" fill="#e15b64" transform="translate(0 107.886)">
+<animateTransform attributeName="transform" type="translate" values="0 124;0 -24" keyTimes="0;1" dur="3s" begin="-1.56s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="35" cy="0" r="2" fill="#e15b64" transform="translate(0 -15.8321)">
+<animateTransform attributeName="transform" type="translate" values="0 125;0 -25" keyTimes="0;1" dur="3s" begin="-1.05s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="12" cy="0" r="2" fill="#e15b64" transform="translate(0 74.9945)">
+<animateTransform attributeName="transform" type="translate" values="0 119;0 -19" keyTimes="0;1" dur="3s" begin="-2.19s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="78" cy="0" r="3" fill="#e15b64" transform="translate(0 72.8009)">
+<animateTransform attributeName="transform" type="translate" values="0 104;0 -4" keyTimes="0;1" dur="3s" begin="-2.1s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="24" cy="0" r="3" fill="#e15b64" transform="translate(0 43.841)">
+<animateTransform attributeName="transform" type="translate" values="0 113;0 -13" keyTimes="0;1" dur="3s" begin="-2.88s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="46" cy="0" r="2" fill="#e15b64" transform="translate(0 8.59236)">
+<animateTransform attributeName="transform" type="translate" values="0 127;0 -27" keyTimes="0;1" dur="3s" begin="-0.54s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="82" cy="0" r="2" fill="#e15b64" transform="translate(0 16.8994)">
+<animateTransform attributeName="transform" type="translate" values="0 148;0 -48" keyTimes="0;1" dur="3s" begin="-0.24s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="75" cy="0" r="2" fill="#e15b64" transform="translate(0 -32.3675)">
+<animateTransform attributeName="transform" type="translate" values="0 136;0 -36" keyTimes="0;1" dur="3s" begin="-1.17s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="81" cy="0" r="3" fill="#e15b64" transform="translate(0 -18.4539)">
+<animateTransform attributeName="transform" type="translate" values="0 151;0 -51" keyTimes="0;1" dur="3s" begin="-0.75s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="45" cy="0" r="2" fill="#e15b64" transform="translate(0 82.31)">
+<animateTransform attributeName="transform" type="translate" values="0 117;0 -17" keyTimes="0;1" dur="3s" begin="-2.01s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="70" cy="0" r="2" fill="#e15b64" transform="translate(0 27.0322)">
+<animateTransform attributeName="transform" type="translate" values="0 118;0 -18" keyTimes="0;1" dur="3s" begin="-0.24s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="26" cy="0" r="2" fill="#e15b64" transform="translate(0 54.0971)">
+<animateTransform attributeName="transform" type="translate" values="0 147;0 -47" keyTimes="0;1" dur="3s" begin="-2.67s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="85" cy="0" r="3" fill="#e15b64" transform="translate(0 71.7876)">
+<animateTransform attributeName="transform" type="translate" values="0 107;0 -7" keyTimes="0;1" dur="3s" begin="-2.16s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="75" cy="0" r="3" fill="#e15b64" transform="translate(0 118.246)">
+<animateTransform attributeName="transform" type="translate" values="0 133;0 -33" keyTimes="0;1" dur="3s" begin="-1.5s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="74" cy="0" r="2" fill="#e15b64" transform="translate(0 -10.292)">
+<animateTransform attributeName="transform" type="translate" values="0 134;0 -34" keyTimes="0;1" dur="3s" begin="-0.81s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="24" cy="0" r="2" fill="#e15b64" transform="translate(0 74.4986)">
+<animateTransform attributeName="transform" type="translate" values="0 103;0 -3" keyTimes="0;1" dur="3s" begin="-2.04s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="58" cy="0" r="3" fill="#e15b64" transform="translate(0 31.9567)">
+<animateTransform attributeName="transform" type="translate" values="0 120;0 -20" keyTimes="0;1" dur="3s" begin="-0.12s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="9" cy="0" r="2" fill="#e15b64" transform="translate(0 13.2124)">
+<animateTransform attributeName="transform" type="translate" values="0 127;0 -27" keyTimes="0;1" dur="3s" begin="-0.45s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="31" cy="0" r="2" fill="#e15b64" transform="translate(0 -18.9588)">
+<animateTransform attributeName="transform" type="translate" values="0 122;0 -22" keyTimes="0;1" dur="3s" begin="-1.17s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="82" cy="0" r="3" fill="#e15b64" transform="translate(0 62.5906)">
+<animateTransform attributeName="transform" type="translate" values="0 153;0 -53" keyTimes="0;1" dur="3s" begin="-2.55s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="48" cy="0" r="3" fill="#e15b64" transform="translate(0 84.2013)">
+<animateTransform attributeName="transform" type="translate" values="0 131;0 -31" keyTimes="0;1" dur="3s" begin="-2.1s" repeatCount="indefinite"></animateTransform>
+</circle><circle cx="37" cy="0" r="3" fill="#e15b64" transform="translate(0 0.934311)">
+<animateTransform attributeName="transform" type="translate" values="0 110;0 -10" keyTimes="0;1" dur="3s" begin="-0.96s" repeatCount="indefinite"></animateTransform>
+</circle>      </pattern></defs>
+
+      <path fill="url(#lds-flask-patid-12fa24bda485d)" clip-path="url(#lds-flask-cpid-b92508e1ddf6a)" d="M59,37.3V18.9c3-0.8,5.1-3.6,5.1-6.8C64.1,8.2,61,5,57.1,5H42.9c-3.9,0-7.1,3.2-7.1,7.1c0,3.2,2.2,6,5.1,6.8v18.4c-11.9,3.8-20.6,15-20.6,28.2C20.4,81.8,33.7,95,50,95s29.6-13.2,29.6-29.6C79.6,52.2,70.9,41.1,59,37.3z"></path>
+
+      <path fill="none" stroke="#f8b26a" stroke-width="5" d="M59,37.3V18.9c3-0.8,5.1-3.6,5.1-6.8C64.1,8.2,61,5,57.1,5H42.9c-3.9,0-7.1,3.2-7.1,7.1c0,3.2,2.2,6,5.1,6.8v18.4c-11.9,3.8-20.6,15-20.6,28.2C20.4,81.8,33.7,95,50,95s29.6-13.2,29.6-29.6C79.6,52.2,70.9,41.1,59,37.3z"></path>
+</svg>
