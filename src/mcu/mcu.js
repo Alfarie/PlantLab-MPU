@@ -80,8 +80,10 @@ function CommandVerify(cmd) {
         if (cmd == 'RDY') {
             //Initialization Part
             console.log('[Info] Mcu status: RDY!');
-            RequestControlSequence();
-            RequestRealTimeData(true);
+            setTimeout( ()=>{
+                RequestControlSequence();
+                RequestRealTimeData(true);
+            },2000);
         } else if (cmd.startsWith("INFO")) {
             let str = cmd.replace('INFO', '');
             console.log('[Info] Mcu board info: ', str);
