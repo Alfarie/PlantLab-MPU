@@ -90,12 +90,7 @@ function CommandVerify(cmd) {
             let str = cmd.replace('INFO', '');
             console.log('[Info] Mcu board info: ', str);
         } else if (cmd.startsWith('UPD')) {
-            // write.next('{control,channelstatus}');
-            // write.next('{control,timer}');
-            // write.next('{control,setpoint}');
-            // write.next('{control,setbound}');
-            // write.next('{water-control}');
-           console.log(cmd);
+            
            if(cmd == 'UPD-WATER') write.next('{water-control}');
            else if(cmd == 'UPD-SETPOINT') write.next('{control,setpoint}');
            else if(cmd == 'UPD-SETBOUND') write.next('{control,setbound}');
