@@ -87,6 +87,7 @@ function CommandVerify(cmd) {
                 RequestControlSequence();
                 RequestRealTimeData(true);
             },2000);
+
         } else if (cmd.startsWith("INFO")) {
             let str = cmd.replace('INFO', '');
             console.log('[Info] Mcu board info: ', str);
@@ -111,6 +112,8 @@ function CommandVerify(cmd) {
             console.log('[Warning] Unknown incoming data:', cmd);
         }
     }
+
+    serialport.setState('done');
 }
 
 function ExecJsonCommand(json) {
@@ -166,6 +169,7 @@ function ExecJsonCommand(json) {
     } else if (type == 'ph-status') {
         statusModel.phStatus = data;
     }
+
 }
 
 //use by control-api.js

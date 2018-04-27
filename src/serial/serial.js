@@ -28,9 +28,11 @@ var isConnected = false;
 var Rx = require('rxjs/Rx');
 var write = new Rx.Subject();
 var read = new Rx.Subject();
+
 var onConnect = new Rx.Subject();
 
-
+var queue = [];
+var state = 'done';
 function Exists(file) {
     return new Promise((resolve, reject) => {
         fs.exists(file, (exists) => {
@@ -90,6 +92,8 @@ function SerialPortConnect(file) {
     })
 }
 
+
+
 function Initialize() {
     if (production) {
         setInterval(() => {
@@ -111,14 +115,35 @@ function Initialize() {
     }
     write.subscribe(data => {
         if (isConnected) {
-            port.write(data);
+            // port.write(data);
+            queue.push(data);
         };
     });
+
+    setInterval( ()=>{ 
+        dispatch()
+    },10);
+}
+
+function dispatch(){
+    if(state == 'done'){
+        // sended
+        if(queue.length > 0){
+            let cmd = queue.shift();
+            port.write(cmd);
+            setState('sended')
+        }
+    }
+}
+
+function setState(st){
+    state = st;
 }
 
 module.exports = {
     write,
     read,
     onConnect,
-    Initialize
+    Initialize,
+    setState
 }
