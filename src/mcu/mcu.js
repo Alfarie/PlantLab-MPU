@@ -38,7 +38,7 @@ function RequestRealTimeData(cmd) {
             write.next('{co2-status}')
             write.next('{ec-status}')
             write.next('{ph-status}')
-        }, 3000);
+        }, 1000);
     } else {
         clearInterval(realTimeRequestLoop);
     }
@@ -47,7 +47,6 @@ function RequestRealTimeData(cmd) {
 function RequestControlSequence() {
     console.log('[Info] Requesting: control');
     write.next('{control,channelstatus}');
-    write.next('{control,manual}');
     write.next('{control,timer}');
     write.next('{control,setpoint}');
     write.next('{control,setbound}');
@@ -87,20 +86,30 @@ function CommandVerify(cmd) {
         } else if (cmd.startsWith("INFO")) {
             let str = cmd.replace('INFO', '');
             console.log('[Info] Mcu board info: ', str);
-        } else if (cmd == 'UPD') {
-            console.log('[Info] Mcu status: UPD!');
-            RequestControlSequence();
-        } else if (cmd == 'DONE') {
+        } else if (cmd.startsWith('UPD')) {
+            // write.next('{control,channelstatus}');
+            // write.next('{control,timer}');
+            // write.next('{control,setpoint}');
+            // write.next('{control,setbound}');
+            // write.next('{water-control}');
+           console.log(cmd);
+           if(cmd == 'UPD-WATER') write.next('{water-control}');
+           else if(cmd == 'UPD-SETPOINT') write.next('{control,setpoint}');
+           else if(cmd == 'UPD-SETBOUND') write.next('{control,setbound}');
+           else if(cmd == 'UPD-TIMER') write.next('{control,timer}');
+           else if(cmd == 'UPD-MANUAL') write.next('{control,manual}');
+        } 
+        else if (cmd == 'DONE') {
             console.log('[Info] Mcu status: REQUESTING DONE!');
             McuUpdated.next(true);
-        } else {
+        } 
+        else {
             console.log('[Warning] Unknown incoming data:', cmd);
         }
     }
 }
 
 function ExecJsonCommand(json) {
-    console.log(json);
     var type = json.type;
     var data = json.data;
     // control setting format: 'control-[type]'
@@ -127,6 +136,7 @@ function ExecJsonCommand(json) {
         /*
         data: json sensors object from mcu
         */
+       
         sensorModel.sensors = data;
         GetSensorsSubject.next(data);
     } else if (type == 'channel-paracc') {

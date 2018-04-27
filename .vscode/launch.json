@@ -13,7 +13,7 @@
             "args": [
                 "-sp=/dev/ttyACM0",
                 "-prod",
-                "--loggerTime=1000"
+                "--loggerTime=6000"
             ]
             
         },
