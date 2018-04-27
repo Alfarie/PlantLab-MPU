@@ -32,17 +32,27 @@ function GetStatus() {
 function RequestRealTimeData(cmd) {
     if (cmd) {
         realTimeRequestLoop = setInterval(() => {
-            write.next('{sensors}')
-            write.next('{control,channelstatus}')
-            write.next('{water-status}')
-            write.next('{co2-status}')
-            write.next('{ec-status}')
-            write.next('{ph-status}')
-        }, 1000);
+
+            // write.next('{sensors}')
+            // write.next('{control,channelstatus}')
+            // write.next('{water-status}')
+            // write.next('{co2-status}')
+            // write.next('{ec-status}')
+            // write.next('{ph-status}')
+
+            write.next('{sensors}');
+            setTimeout( ()=> write.next('{control,channelstatus}'), 200 )
+            setTimeout( ()=> write.next('{water-status}'), 400 )
+            setTimeout( ()=> write.next('{co2-status}'), 600 )
+            setTimeout( ()=> write.next('{ec-status}'), 800 )
+            setTimeout( ()=> write.next('{ph-status}'), 1000 )
+
+        }, 2000);
     } else {
         clearInterval(realTimeRequestLoop);
     }
 }
+
 
 function RequestControlSequence() {
     console.log('[Info] Requesting: control');
