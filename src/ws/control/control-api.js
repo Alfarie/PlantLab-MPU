@@ -11,8 +11,6 @@ router.get('/', function(req,res){
     res.json(control);
 });
 
-
-
 router.post('/', function(req,res){
     // console.log(req.body);
     SendCommand(req.body.control);

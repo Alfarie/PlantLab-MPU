@@ -39,9 +39,7 @@ function RequestRealTimeData(cmd) {
             write.next('{co2-status}')
             write.next('{ec-status}')
             write.next('{ph-status}')
-
-            
-        }, 2000);
+        }, 1000);
     } else {
         clearInterval(realTimeRequestLoop);
     }
