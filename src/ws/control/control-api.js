@@ -14,7 +14,7 @@ router.get('/', function(req,res){
 
 
 router.post('/', function(req,res){
-    console.log(req.body);
+    // console.log(req.body);
     SendCommand(req.body.control);
     res.json({msg: 'successfull'})
 });
@@ -25,7 +25,7 @@ router.get('/water', (req,res)=>{
 });
 
 router.post('/water', (req,res)=>{
-   console.log(req.body);
+//    console.log(req.body);
    SendWater(req.body);
    res.json({msg: 'successfull'})
 });
