@@ -20,6 +20,9 @@ function GetControl() {
 function GetWaterControl() {
     return controlModel.waterControl;
 }
+function GetCalibration(){
+    return controlModel.calibration;
+}
 
 function GetSensors() {
     return sensorModel.sensors;
@@ -53,6 +56,7 @@ function RequestControlSequence() {
     write.next('{control,setpoint}');
     write.next('{control,setbound}');
     write.next('{water-control}')
+    write.next('{getcal}')
     write.next('{done}')
 }
 
@@ -62,8 +66,9 @@ function SetSerialPort(serial) {
     write = serial.write;
 
     serial.onConnect.subscribe(data => {
-        console.log("[Info] Mcu checking status...");
-        write.next("{checkstatus}");
+
+        /*console.log("[Info] Mcu checking status...");
+        write.next("{checkstatus}");*/
     });
 
     read.subscribe(data => {
@@ -81,27 +86,25 @@ function CommandVerify(cmd) {
         if (cmd == 'RDY') {
             //Initialization Part
             console.log('[Info] Mcu status: RDY!');
-            setTimeout( ()=>{
+            setTimeout(() => {
                 RequestControlSequence();
                 RequestRealTimeData(true);
-            },2000);
-
+            }, 2000);
         } else if (cmd.startsWith("INFO")) {
             let str = cmd.replace('INFO', '');
             console.log('[Info] Mcu board info: ', str);
         } else if (cmd.startsWith('UPD')) {
-            
-           if(cmd == 'UPD-WATER') write.next('{water-control}');
-           else if(cmd == 'UPD-SETPOINT') write.next('{control,setpoint}');
-           else if(cmd == 'UPD-SETBOUND') write.next('{control,setbound}');
-           else if(cmd == 'UPD-TIMER') write.next('{control,timer}');
-           else if(cmd == 'UPD-MANUAL') write.next('{control,manual}');
-        } 
-        else if (cmd == 'DONE') {
+
+            if (cmd == 'UPD-WATER') write.next('{water-control}');
+            else if (cmd == 'UPD-SETPOINT') write.next('{control,setpoint}');
+            else if (cmd == 'UPD-SETBOUND') write.next('{control,setbound}');
+            else if (cmd == 'UPD-TIMER') write.next('{control,timer}');
+            else if (cmd == 'UPD-MANUAL') write.next('{control,manual}');
+            else if (cmd == 'UPD-SETCAL') write.next('{getcal}');
+        } else if (cmd == 'DONE') {
             console.log('[Info] Mcu status: REQUESTING DONE!');
             McuUpdated.next(true);
-        } 
-        else {
+        } else {
             console.log('[Warning] Unknown incoming data:', cmd);
         }
     }
@@ -136,7 +139,7 @@ function ExecJsonCommand(json) {
         /*
         data: json sensors object from mcu
         */
-       
+
         sensorModel.sensors = data;
         GetSensorsSubject.next(data);
     } else if (type == 'channel-paracc') {
@@ -161,6 +164,9 @@ function ExecJsonCommand(json) {
         statusModel.ecStatus = data;
     } else if (type == 'ph-status') {
         statusModel.phStatus = data;
+    } else if (type == 'calibration') {
+        console.log('[Info] Recieved: calibration');
+        controlModel.calibration = data;
     }
 
 }
@@ -241,14 +247,22 @@ function SendWaterProcess(control) {
     write.next(strcmd);
 }
 
+function SendCalibration(cal){
+    var strcmd = "{setcal," + cal.ec + "," + cal.ph + "}";
+    console.log(strcmd);
+    write.next(strcmd);
+}
+
 module.exports = {
     SetSerialPort,
     GetControl,
     GetWaterControl,
+    GetCalibration,
     GetSensors,
     GetStatus,
     SendCommand,
     SendWaterProcess,
+    SendCalibration,
     ExecJsonCommand,
     SendDateTime,
     Subject: {
