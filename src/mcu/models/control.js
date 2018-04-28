@@ -19,8 +19,11 @@ var waterControl = {
     waitTime: 900
 };
 
+var calibration = {}
+
 
 module.exports = {
     control,
-    waterControl
+    waterControl,
+    calibration
 }
