@@ -20,6 +20,18 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Production Scan",
+            "program": "${workspaceFolder}/src/main.js",
+            "args": [
+                "-sp=scan",
+                "-prod",
+                "--loggerTime=6000"
+            ]
+            
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Demo run",
             "program": "${workspaceFolder}/src/main.js",
             "args": [
