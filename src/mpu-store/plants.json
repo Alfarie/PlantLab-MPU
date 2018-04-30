@@ -1,0 +1,38 @@
+[
+    {
+        "name": "LETTUCE",
+        "days": 45,
+        "id": 1,
+        "image": "lettuce.jpg"
+    },
+    {
+        "name": "GREEN OAK",
+        "days": 45,
+        "id": 2,
+        "image": "green-oak.jpg"
+    },
+    {
+        "name": "RED OAK",
+        "days": 45,
+        "id": 3,
+        "image": "red-oak.jpg"
+    },
+    {
+        "name": "RED CORAL",
+        "days": 45,
+        "id": 4,
+        "image": "red-coral.jpg"
+    },
+    {
+        "name": "BUTTER HEAD",
+        "days": 45,
+        "id": 5,
+        "image": "butterhead.jpg"
+    },
+    {
+        "name": "F.ICEBERG",
+        "days": 45,
+        "id": 6,
+        "image": "frillice-iceberg.jpg"
+    }
+]
