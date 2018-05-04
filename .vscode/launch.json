@@ -26,8 +26,7 @@
                 "-sp=scan",
                 "-prod",
                 "--loggerTime=6000"
-            ]
-            
+            ],
         },
         {
             "type": "node",
