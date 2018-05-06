@@ -51,7 +51,7 @@ router.get('/wifi/disconnect', function(req,res){
 });
 
 router.post('/wifi/connect', function(req,res){
-    wifi.Connect(res.body).then( status =>{
+    wifi.Connect(req.body).then( status =>{
         res.json({msg: 'success', data: status})
     }).catch(
         err=>{
