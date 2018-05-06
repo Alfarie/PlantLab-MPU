@@ -30,6 +30,12 @@ function CurrentWifi(){
         wpa_cli.status(interface, function(err, status) {
             if (err) reject(err.message);
             resolve(status);
+            if(status.wpa_state == 'COMPLETED'){
+                resolve(status);
+            }
+            else{
+                reject(status);
+            }
         });
     })
 }
