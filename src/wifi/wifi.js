@@ -29,7 +29,7 @@ function CurrentWifi(){
     return new Promise( (resolve, reject)=>{
         wpa_cli.status(interface, function(err, status) {
             if (err) reject(err.message);
-            resolve(status);
+            console.log(status);
             if(status.wpa_state == 'COMPLETED'){
                 resolve(status);
             }
