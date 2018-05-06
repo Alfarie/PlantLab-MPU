@@ -45,13 +45,21 @@ function Connect(wifi) {
         {ssid: '...', psk: '...'}
     */
     //create wpa.conf
-
-    fs.writeFileSync(wpa_supplicant_dir, template);
-    var cmd = 'wpa_passphrase "' + wifi.ssid + '" "' + wifi.psk + '"';
-    var stdout = execSync(cmd).toString();
-    fs.appendFileSync(wpa_supplicant_dir, stdout);
-    stdout = execSync('wpa_cli -i wlan0 reconfigure');
-    return CheckStatus();
+    
+    try{
+        Disconnet();
+        fs.writeFileSync(wpa_supplicant_dir, template);
+        var cmd = 'wpa_passphrase "' + wifi.ssid + '" "' + wifi.psk + '"';
+        var stdout = execSync(cmd).toString();
+        fs.appendFileSync(wpa_supplicant_dir, stdout);
+        stdout = execSync('wpa_cli -i wlan0 reconfigure');
+        returnCheckStatus();
+    }
+    catch(e){
+        return CheckStatus();
+    }
+    
+    
 }
 
 function Disconnet() {
