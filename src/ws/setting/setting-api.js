@@ -45,4 +45,19 @@ router.get('/wifi/current',function (req, res) {
         })
 })
 
+router.get('/wifi/disconnect', function(req,res){
+    var std = wifi.Disconnet();
+    res.json({msg: 'success', data: std})
+});
+
+router.post('/wifi/connect', function(req,res){
+    wifi.Connect(res.body).then( status =>{
+        res.json({msg: 'success', data: status})
+    }).catch(
+        err=>{
+            res.json({msg: 'fail', data: err})
+        }
+    )
+})
+
 module.exports = router;

@@ -51,6 +51,7 @@ function Connect(wifi) {
 function Disconnet() {
     fs.writeFileSync(wpa_supplicant_dir, template);
     stdout = execSync('wpa_cli -i wlan0 reconfigure');
+    return stdout;
 }
 
 function CheckStatus(){
