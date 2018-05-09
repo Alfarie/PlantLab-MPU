@@ -15,6 +15,7 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "express-json-csv": "0.0.3",
+    "firebase": "^5.0.1",
     "jsonwebtoken": "^8.2.0",
     "moment": "^2.21.0",
     "path": "^0.12.7",
