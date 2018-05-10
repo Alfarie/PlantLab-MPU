@@ -83,16 +83,9 @@ function UpdateMcuStatus(mcu){
     }
 }
 
-function UpdateWaterControl(water){
-    if (auth.currentUser) {
-        let path = '/mids/' + mid + '/water';
-        db.ref(path).set(water);
-    }
-}
 
 module.exports = {
     UpdateSensors,
     UpdateControl,
-    UpdateMcuStatus,
-    UpdateWaterControl
+    UpdateMcuStatus
 }
