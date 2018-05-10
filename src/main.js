@@ -11,7 +11,7 @@ if (!exit) {
     var ws = require('./ws/ws');
     var config = require('./args/config');
     var serial = require('./serial/serial');
-    
+    var firebase = require('./online/firebase');
     serial.Initialize();
 
     var mcu = require('./mcu/mcu');
@@ -27,12 +27,21 @@ if (!exit) {
         ws.io.to('0x01').emit('MEMORY', mcu.GetStatus().freeMemory);
         ws.io.to('0x01').emit('GPIO', mcu.GetStatus().gpio);
         ws.io.to('0x01').emit('WATER_PROCESS', mcu.GetStatus().waterStatus);
-
         ws.io.to('0x01').emit('CO2_STATUS', mcu.GetStatus().co2Status);
         ws.io.to('0x01').emit('EC_STATUS', mcu.GetStatus().ecStatus);
         ws.io.to('0x01').emit('PH_STATUS', mcu.GetStatus().phStatus);
-        
     });
+    setInterval( ()=>{
+        firebase.UpdateSensors(mcu.GetSensors());
+        firebase.UpdateControl(mcu.GetControl());
+        firebase.UpdateMcuStatus({
+            water: mcu.GetStatus().waterStatus,
+            co2: mcu.GetStatus().co2Status,
+            ec: mcu.GetStatus().ecStatus,
+            ph: mcu.GetStatus().phStatus,
+            gpio: mcu.GetStatus().gpio
+        });
+    },2000);
 
     var logger = require('./datalogger/datalogger');
     logger.Initialize(mcu,config);

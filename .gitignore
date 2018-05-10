@@ -3,3 +3,4 @@ Logger/
 DB/
 package-lock.json
 src/online/firebase.js
+src/online/firebase-api.js

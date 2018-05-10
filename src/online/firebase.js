@@ -1,13 +1,12 @@
 global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 const firebase = require('firebase');
+
 require("firebase/auth");
 require("firebase/database");
+var config = require('./firebase-api').config;
 var getMac = require('./getmac').getMac;
-// var Connection = require('./online').Connection;
-// var CheckConection = require('./online').CheckConection;
 var online = require('./online');
-
-
+var mid = null;
 var GetLocation = require('./location').GetLocation;
 var GetIP = require('./public-ip').GetIP;
 
@@ -45,17 +44,18 @@ function Init() {
         .then(data => {
             console.log('[Info] Firebase connected');
             getMac().then(mac => {
+                mid = mac;
                 let root = '/mids/' + mac;
-                db.ref( root + '/matchineId').set(mac);
+                db.ref(root + '/matchineId').set(mac);
                 GetIP().then(ip => {
                     db.ref(root + '/ip').set(ip);
-                    GetLocation(ip).then(local=> db.ref(root + '/local').set(local));
+                    GetLocation(ip).then(local => db.ref(root + '/local').set(local));
                 })
             })
         })
         .catch(err => {
             console.log(err);
-        })
+        });
 }
 online.Connection.asObservable().subscribe(data => {
     if (data == 'connected') {
@@ -63,10 +63,28 @@ online.Connection.asObservable().subscribe(data => {
     }
 })
 
-function UpdateAllData(){
-    online.CheckConection().then(data=>{
-        console.log('update all data');
-    })
+function UpdateSensors(sensors) {
+    if (auth.currentUser) {
+        let path = '/mids/' + mid + '/sensors';
+        db.ref(path).set(sensors);
+    }
 }
 
-setInterval(UpdateAllData, 1000);
+function UpdateControl(control){
+    if (auth.currentUser) {
+        let path = '/mids/' + mid + '/control';
+        db.ref(path).set(control);
+    }
+}
+function UpdateMcuStatus(mcu){
+    if (auth.currentUser) {
+        let path = '/mids/' + mid + '/mcu-status';
+        db.ref(path).set(mcu);
+    }
+}
+
+module.exports = {
+    UpdateSensors,
+    UpdateControl,
+    UpdateMcuStatus
+}
