@@ -16,12 +16,16 @@
     "express": "^4.16.3",
     "express-json-csv": "0.0.3",
     "firebase": "^5.0.1",
+    "getmac": "^1.4.1",
     "jsonwebtoken": "^8.2.0",
     "moment": "^2.21.0",
+    "node-where": "^1.1.0",
     "path": "^0.12.7",
+    "public-ip": "^2.4.0",
     "rxjs": "^5.5.7",
     "serialport": "^6.1.1",
     "socket.io": "^2.0.4",
-    "wireless-tools": "^0.19.0"
+    "wireless-tools": "^0.19.0",
+    "xmlhttprequest": "^1.8.0"
   }
 }
