@@ -8,7 +8,7 @@ var template = `ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 country=GB
 `
-var interface = 'wlan0'
+var interface = require('../args/config.js').interface;
 const {
     execSync
 } = require('child_process');
