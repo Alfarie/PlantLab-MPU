@@ -34,6 +34,7 @@ if (!exit) {
     setInterval( ()=>{
         firebase.UpdateSensors(mcu.GetSensors());
         firebase.UpdateControl(mcu.GetControl());
+        firebase.UpdateWaterControl(mcu.GetWaterControl());
         firebase.UpdateMcuStatus({
             water: mcu.GetStatus().waterStatus,
             co2: mcu.GetStatus().co2Status,
