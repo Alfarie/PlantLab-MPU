@@ -26,11 +26,17 @@ var argProcess = function(arg){
         let time = arg.split("=")[1];
         config.loggerTime = time;
     }
+
+    else if(arg.startsWith("--iface")){
+        let iface = arg.split("=")[1];
+        config.interface = iface;
+    }
     
     else if(arg.startsWith("--man")){
         console.log(man);
         return false;
     }
+
 
     return true;
 }

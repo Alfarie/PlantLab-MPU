@@ -4,11 +4,13 @@ var production = false;
 
 var loggerDirectory = __dirname.replace('/src/args', '/Logger/');
 var loggerTime = 1000 * 60;
+var interface  = 'eth0'
 
 module.exports = {
     port,
     serialPort,
     production,
     loggerDirectory,
-    loggerTime
+    loggerTime,
+    interface
 }
