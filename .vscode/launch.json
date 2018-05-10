@@ -25,7 +25,8 @@
             "args": [
                 "-sp=scan",
                 "-prod",
-                "--loggerTime=6000"
+                "--loggerTime=6000",
+                "--iface=enp0s25"
             ],
         },
         {
