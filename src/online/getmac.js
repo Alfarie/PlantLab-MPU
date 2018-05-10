@@ -11,8 +11,6 @@ function getMac() {
     })
 }
 
-
-
 module.exports = {
     getMac,
     mac

@@ -1,7 +1,7 @@
 var Rx = require('rxjs');
 
 var Connection = new Rx.Subject();
-var state = '';
+var state = 'undefined';
 
 function CheckConection() {
     return new Promise((resolve, reject) => {
@@ -34,7 +34,12 @@ var loop = setInterval( ()=>{
     )
 },1000);
 
+function GetState(){
+    return state;
+}
+
 module.exports = {
     CheckConection,
-    Connection
+    Connection,
+    GetState
 }
