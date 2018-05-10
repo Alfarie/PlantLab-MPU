@@ -2,3 +2,4 @@ node_modules/
 Logger/
 DB/
 package-lock.json
+src/online/firebase.js
