@@ -201,6 +201,9 @@ function SendCommand(chData) {
         let irr = chData.irrigation;
         strcmd = "{irrigation," + ch + "," + irr.mode + "," + irr.soil_upper + "," + irr.soil_lower + "," + irr.par_accum + "," + irr.working + "}";
     }
+    else if(mode == 5){
+        strcmd = "{mode," + ch + "," + mode + "}";
+    }
     console.log(strcmd);
     write.next(strcmd);
 }
