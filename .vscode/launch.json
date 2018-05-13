@@ -11,9 +11,10 @@
             "name": "Production Run",
             "program": "${workspaceFolder}/src/main.js",
             "args": [
-                "-sp=/dev/ttyACM0",
+                "-sp=/dev/ttyACM1",
                 "-prod",
-                "--loggerTime=6000"
+                "--loggerTime=60000",
+                "--iface=enp0s25"
             ]
             
         },
@@ -25,7 +26,7 @@
             "args": [
                 "-sp=scan",
                 "-prod",
-                "--loggerTime=6000",
+                "--loggerTime=60000",
                 "--iface=enp0s25"
             ],
         },
