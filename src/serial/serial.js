@@ -30,6 +30,7 @@ var write = new Rx.Subject();
 var read = new Rx.Subject();
 
 var onConnect = new Rx.Subject();
+var onDisconnect = new Rx.Subject();
 
 var queue = [];
 var state = 'done';
@@ -72,6 +73,7 @@ function Connect(portName) {
         })
         port.on('close', (err) => {
             console.log(err);
+            onDisconnect.next('disconnected');
             isConnected = false;
         })
         parser.on('data', (data) => {
@@ -92,12 +94,24 @@ function SerialPortConnect(file) {
     })
 }
 
+function ScanPort(){
+    let prefixPort = '/dev/ttyACM';
+    for(var i = 0 ; i < 20; i++){
+        let port = prefixPort + i;
+        if (fs.existsSync(port)) {
+            console.log('[Info] Found Port');
+            return port;
+        }
+    }
+    return prefixPort;
+}
 
 
 function Initialize() {
     if (production) {
         setInterval(() => {
             if (!isConnected) {
+                portName = ScanPort();
                 console.log('[Info] Connecting to ' + portName)
                 SerialPortConnect(portName)
                     .then(() => {
@@ -144,6 +158,7 @@ module.exports = {
     write,
     read,
     onConnect,
+    onDisconnect,
     Initialize,
     setState
 }

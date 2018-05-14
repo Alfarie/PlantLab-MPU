@@ -71,6 +71,12 @@ function SetSerialPort(serial) {
         write.next("{checkstatus}");*/
     });
 
+    serial.onDisconnect.subscribe(data=>{
+        console.log('[Info] Serial Port disconencted');
+        console.log('[Info] Requesting data from mcu: cleared');
+        RequestRealTimeData(false);
+    })
+
     read.subscribe(data => {
         CommandVerify(data);
     });
@@ -90,6 +96,7 @@ function CommandVerify(cmd) {
                 RequestControlSequence();
                 RequestRealTimeData(true);
             }, 2000);
+
         } else if (cmd.startsWith("INFO")) {
             let str = cmd.replace('INFO', '');
             console.log('[Info] Mcu board info: ', str);
