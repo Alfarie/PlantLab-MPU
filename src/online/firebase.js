@@ -10,11 +10,12 @@ var mid = null;
 var GetLocation = require('./location').GetLocation;
 var GetIP = require('./public-ip').GetIP;
 
-
 firebase.initializeApp(config);
 
 var db = firebase.database();
 var auth = firebase.auth();
+
+var firebaseDB = require('./firebase-db')
 
 function CreateUser(username) {
     return new Promise((resolve, reject) => {
@@ -51,12 +52,15 @@ function Init() {
                     db.ref(root + '/ip').set(ip);
                     GetLocation(ip).then(local => db.ref(root + '/local').set(local));
                 })
+
+                firebaseDB.Init(db);
             })
         })
         .catch(err => {
             console.log(err);
         });
 }
+
 online.Connection.asObservable().subscribe(data => {
     if (data == 'connected') {
         Init();
@@ -87,5 +91,6 @@ function UpdateMcuStatus(mcu){
 module.exports = {
     UpdateSensors,
     UpdateControl,
-    UpdateMcuStatus
+    UpdateMcuStatus,
+    db
 }
