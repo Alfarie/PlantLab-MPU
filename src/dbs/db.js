@@ -57,6 +57,7 @@ function ExecSql(sql, params){
     })
     .catch(err=>{
         console.log(err);
+        db.close();
     })
 }
 
@@ -68,7 +69,7 @@ function GetSql(sql, params){
                 db.close();
                 resolve(rows);
             })
-        })
+        });
     })
 }
 
