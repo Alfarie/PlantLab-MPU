@@ -89,7 +89,9 @@ function GetSql(sql, params){
 Connect()
     .then(Init)
     .then(Close)
-    .catch(err=>console.log(err));
+    .catch(err=>{
+        Close();
+    });
 
 module.exports = {
     ExecSql,
