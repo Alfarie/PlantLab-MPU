@@ -24,6 +24,7 @@ if (!exit) {
     
     mcu.Subject.GetSensorsSubject.subscribe( sensors =>{
         ws.io.to('0x01').emit('SENSORS', sensors);
+        ws.io.to('0x01').emit('DATETIME', mcu.GetStatus().datetime);
         ws.io.to('0x01').emit('MEMORY', mcu.GetStatus().freeMemory);
         ws.io.to('0x01').emit('GPIO', mcu.GetStatus().gpio);
         ws.io.to('0x01').emit('WATER_PROCESS', mcu.GetStatus().waterStatus);

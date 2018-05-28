@@ -3,6 +3,7 @@ var err;
 var moment = require('moment');
 var fs = require('fs');
 var db = require('../dbs/db');
+var statusModel = require('../mcu/models/status');
 var loop = null;
 var config, mcu;
 var dir, loggerTime;
@@ -28,11 +29,8 @@ var stop = function () {
 var LoggerLoop = function () {
     var sensor = mcu.GetSensors();
     if (Object.keys(sensor).length != 0) {
-        var t = sensor.time.split(":");
-        var d = sensor.date.split("/");
-        var datestr = "DATE" + moment(sensor.date).format('YYYY-MM-DD');
         var loggerStr = {
-            'datetime': moment(sensor.date + " " + sensor.time).format('YYYY-MM-DD HH:mm:ss'),
+            'datetime': moment(statusModel.datetime.date + " " + statusModel.datetime.time).format('YYYY-MM-DD HH:mm:ss'),
             'temperature': sensor.temperature,
             'humidity': sensor.humidity,
             'co2': sensor.co2,
@@ -48,7 +46,7 @@ var LoggerLoop = function () {
             VALUES(?,?,?,?,?,?,?,?,?);`
         
         let params = [
-            moment(sensor.date + " " + sensor.time).unix(), 
+            moment(statusModel.datetime.date + " " + statusModel.datetime.time).unix(), 
             loggerStr.datetime,
             loggerStr.temperature,
             loggerStr.humidity,

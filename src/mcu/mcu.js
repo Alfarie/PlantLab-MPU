@@ -2,7 +2,7 @@ var controlModel = require('./models/control');
 var sensorModel = require('./models/sensors');
 var statusModel = require('./models/status');
 var config = require('../args/config');
-
+var CmdProcess = require('./cmdprocessing');
 
 var serialport;
 var read, write;
@@ -20,9 +20,11 @@ function GetControl() {
 function GetWaterControl() {
     return controlModel.waterControl;
 }
-function GetCalibration(){
+
+function GetCalibration() {
     return controlModel.calibration;
 }
+
 
 function GetSensors() {
     return sensorModel.sensors;
@@ -35,27 +37,26 @@ function GetStatus() {
 function RequestRealTimeData(cmd) {
     if (cmd) {
         realTimeRequestLoop = setInterval(() => {
-
-            write.next('{sensors}')
-            write.next('{control,channelstatus}')
-            write.next('{water-status}')
-            write.next('{co2-status}')
-            write.next('{ec-status}')
-            write.next('{ph-status}')
+            write.next('{Gsensors}')
+            write.next('{Gdatetime}')
+            write.next('{Ggpio}')
+            write.next('{Gwater-status}')
+            write.next('{Gco2-status}')
+            write.next('{Gec-status}')
+            write.next('{Gph-status}')
         }, 1000);
     } else {
         clearInterval(realTimeRequestLoop);
     }
 }
 
-
 function RequestControlSequence() {
     console.log('[Info] Requesting: control');
-    write.next('{control,channelstatus}');
-    write.next('{control,timer}');
-    write.next('{control,setpoint}');
-    write.next('{control,setbound}');
-    write.next('{water-control}')
+    write.next('{Gcontrol,channelstatus,1,6}');
+    write.next('{Gcontrol,timer,1,1}{Gcontrol,timer,5,1}'); //led, water-timer
+    write.next('{Gcontrol,setbound,2,1}'); //co2
+    write.next('{Gcontrol,setpoint,3,2}'); //ec,ph
+    write.next('{Gwater-control}')
     write.next('{getcal}')
     write.next('{done}')
 }
@@ -71,7 +72,7 @@ function SetSerialPort(serial) {
         write.next("{checkstatus}");*/
     });
 
-    serial.onDisconnect.subscribe(data=>{
+    serial.onDisconnect.subscribe(data => {
         console.log('[Info] Serial Port disconencted');
         console.log('[Info] Requesting data from mcu: cleared');
         RequestRealTimeData(false);
@@ -84,99 +85,51 @@ function SetSerialPort(serial) {
 
 //check is json format or plaintext
 function CommandVerify(cmd) {
-    try {
-        let json = JSON.parse(cmd);
-        ExecJsonCommand(json);
-    } catch (ex) {
-        // console.log(ex);
-        if (cmd == 'RDY') {
-            //Initialization Part
-            console.log('[Info] Mcu status: RDY!');
-            setTimeout(() => {
-                RequestControlSequence();
-                RequestRealTimeData(true);
-            }, 2000);
 
-        } else if (cmd.startsWith("INFO")) {
-            let str = cmd.replace('INFO', '');
-            console.log('[Info] Mcu board info: ', str);
-        } else if (cmd.startsWith('UPD')) {
 
-            if (cmd == 'UPD-WATER') write.next('{water-control}');
-            else if (cmd == 'UPD-SETPOINT') write.next('{control,setpoint}');
-            else if (cmd == 'UPD-SETBOUND') write.next('{control,setbound}');
-            else if (cmd == 'UPD-TIMER') write.next('{control,timer}');
-            else if (cmd == 'UPD-MANUAL') write.next('{control,manual}');
-            else if (cmd == 'UPD-SETCAL') write.next('{getcal}');
-        } else if (cmd == 'DONE') {
-            console.log('[Info] Mcu status: REQUESTING DONE!');
-            McuUpdated.next(true);
-        } else {
-            console.log('[Warning] Unknown incoming data:', cmd);
-        }
+    if (cmd == 'RDY') {
+        //Initialization Part
+        console.log('[Info] Mcu status: RDY!');
+        setTimeout(() => {
+            RequestControlSequence();
+            RequestRealTimeData(true);
+        }, 2000);
+
+    } else if (cmd.startsWith("INFO")) {
+        let str = cmd.replace('INFO', '');
+        console.log('[Info] Mcu board info: ', str);
+    } else if (cmd.startsWith('UPD')) {
+        var resarr = cmd.split('-');
+        var type = resarr[1];
+        var ch = (resarr.length > 2) ? resarr[2] : null;
+        if (type == 'WATER') write.next('{Gwater-control}');
+        else if (type == 'SETPOINT') write.next('{Gcontrol,setpoint,' + ch + ',1}');
+        else if (type == 'SETBOUND') write.next('{Gcontrol,setbound,' + ch + ',1}');
+        else if (type == 'TIMER') write.next('{Gcontrol,timer,' + ch + ',1}');
+        else if (type == 'MANUAL') write.next('{Gcontrol,manual,' + ch + ',1}');
+        else if (type == 'SETCAL') write.next('{getcal}');
+        if (ch) write.next('{Gcontrol,channelstatus,' + ch + ',1}');
+        
+    } else if (cmd == 'DONE') {
+        console.log('[Info] Mcu status: REQUESTING DONE!');
+        McuUpdated.next(true);
     }
-
+    // if cmd is not json format
+    else {
+        var cmdarr = CmdProcess.SplitCommand(cmd);
+        cmdarr.forEach(cmd => {
+            var jsonCmd = CmdProcess.ExtractCommand(cmd);
+            if (jsonCmd) {
+                if (jsonCmd.header == 'sensors')
+                    GetSensorsSubject.next(jsonCmd.data);
+            } else {
+                console.log('[Warning] Unknown incoming data:', cmd);
+            }
+        });
+    }
     serialport.setState('done');
 }
 
-function ExecJsonCommand(json) {
-    var type = json.type;
-    var data = json.data;
-    // control setting format: 'control-[type]'
-    if (type.startsWith('control')) {
-        /*
-            split 'contorl-[type]' to only [type]
-            ct: control type [manual, timer, setpoint, setbound, irrigation]
-        */
-        let ct = type.split('-')[1];
-        data.forEach((chdata, ind) => {
-            let ch = ind + 1;
-            let d = data[ind];
-            controlModel.control[ind][ct] = d[ct];
-        })
-        console.log('[Info] Recieved: ' + type);
-    } else if (type == 'channel-status') {
-        data.forEach((d, ind) => {
-            controlModel.control[ind].ch = ind + 1;
-            controlModel.control[ind].mode = d.mode;
-            controlModel.control[ind].sensor = d.sensor;
-            statusModel.gpio[ind] = d.status;
-        })
-    } else if (type == 'sensors') {
-        /*
-        data: json sensors object from mcu
-        */
-
-        sensorModel.sensors = data;
-        GetSensorsSubject.next(data);
-    } else if (type == 'channel-paracc') {
-        /*
-            data:  Array(4) [Object, Object, Object, Object]
-                        acc:0
-                        isuse:0
-                        max:1500000
-                        mode:0
-        */
-        statusModel.paracc = data;
-    } else if (type == 'free-memory') {
-        statusModel.freeMemory = data;
-    } else if (type.startsWith('waterprocess')) {
-        statusModel.waterStatus = json;
-    } else if (type.startsWith('water-control')) {
-        console.log('[Info] Recieved: control-water');
-        controlModel.waterControl = data;
-    } else if (type == 'co2-status') {
-        statusModel.co2Status = data;
-    } else if (type == 'ec-status') {
-        statusModel.ecStatus = data;
-    } else if (type == 'ph-status') {
-        statusModel.phStatus = data;
-    } else if (type == 'calibration') {
-        console.log('[Info] Recieved: calibration');
-        controlModel.calibration = data;
-    }
-
-}
 
 //use by control-api.js
 function SendCommand(chData) {
@@ -207,8 +160,7 @@ function SendCommand(chData) {
         //{irrigation,ch, irr_mode,soil_up, soil_low, par_acc}
         let irr = chData.irrigation;
         strcmd = "{irrigation," + ch + "," + irr.mode + "," + irr.soil_upper + "," + irr.soil_lower + "," + irr.par_accum + "," + irr.working + "}";
-    }
-    else if(mode == 5){
+    } else if (mode == 5) {
         strcmd = "{mode," + ch + "," + mode + "}";
     }
     console.log(strcmd);
@@ -257,7 +209,7 @@ function SendWaterProcess(control) {
     write.next(strcmd);
 }
 
-function SendCalibration(cal){
+function SendCalibration(cal) {
     var strcmd = "{setcal," + cal.ec + "," + cal.ph + "}";
     console.log(strcmd);
     write.next(strcmd);
@@ -273,10 +225,70 @@ module.exports = {
     SendCommand,
     SendWaterProcess,
     SendCalibration,
-    ExecJsonCommand,
     SendDateTime,
     Subject: {
         GetSensorsSubject,
         McuUpdated
     }
 }
+
+
+
+// function ExecJsonCommand(json) {
+//     console.log('json command' + json + '--------------------------------------------------------------------');
+//     var type = json.type;
+//     var data = json.data;
+//     // control setting format: 'control-[type]'
+//     if (type.startsWith('control')) {
+//         /*
+//             split 'contorl-[type]' to only [type]
+//             ct: control type [manual, timer, setpoint, setbound, irrigation]
+//         */
+//         let ct = type.split('-')[1];
+//         data.forEach((chdata, ind) => {
+//             let ch = ind + 1;
+//             let d = data[ind];
+//             controlModel.control[ind][ct] = d[ct];
+//         })
+//         console.log('[Info] Recieved: ' + type);
+//     } else if (type == 'channel-status') {
+//         data.forEach((d, ind) => {
+//             controlModel.control[ind].ch = ind + 1;
+//             controlModel.control[ind].mode = d.mode;
+//             controlModel.control[ind].sensor = d.sensor;
+//             statusModel.gpio[ind] = d.status;
+//         })
+//     } else if (type == 'sensors') {
+//         /*
+//         data: json sensors object from mcu
+//         */
+
+//         sensorModel.sensors = data;
+//         GetSensorsSubject.next(data);
+//     } else if (type == 'channel-paracc') {
+//         /*
+//             data:  Array(4) [Object, Object, Object, Object]
+//                         acc:0
+//                         isuse:0
+//                         max:1500000
+//                         mode:0
+//         */
+//         statusModel.paracc = data;
+//     } else if (type == 'free-memory') {
+//         statusModel.freeMemory = data;
+//     } else if (type.startsWith('waterprocess')) {
+//         statusModel.waterStatus = json;
+//     } else if (type.startsWith('water-control')) {
+//         console.log('[Info] Recieved: control-water');
+//         controlModel.waterControl = data;
+//     } else if (type == 'co2-status') {
+//         statusModel.co2Status = data;
+//     } else if (type == 'ec-status') {
+//         statusModel.ecStatus = data;
+//     } else if (type == 'ph-status') {
+//         statusModel.phStatus = data;
+//     } else if (type == 'calibration') {
+//         console.log('[Info] Recieved: calibration');
+//         controlModel.calibration = data;
+//     }
+// }
