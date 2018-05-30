@@ -129,14 +129,13 @@ function Initialize() {
     }
     write.subscribe(data => {
         if (isConnected) {
-            // port.write(data);
             queue.push(data);
+            if(queue.length > 0){
+                dispatch();
+            }
         };
     });
 
-    setInterval( ()=>{ 
-        dispatch()
-    },10);
 }
 
 function dispatch(){
@@ -152,6 +151,9 @@ function dispatch(){
 
 function setState(st){
     state = st;
+    if(st == 'done'){
+        dispatch();
+    }
 }
 
 module.exports = {
