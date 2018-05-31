@@ -48,6 +48,7 @@ if (!exit) {
             ph: mcu.GetStatus().phStatus,
             gpio: mcu.GetStatus().gpio
         });
+        firebase.UpdateMPUTime()
     },2000);
 
     setInterval( ()=>{
@@ -55,7 +56,8 @@ if (!exit) {
             datetime: moment().format('YYYY-MM-DD HH:mm:ss'),
             os: memory.GetOSMemory(),
             node: memory.GetNodeMemory()
-        })
+        });
+        
     },60000);
 
     var logger = require('./datalogger/datalogger');

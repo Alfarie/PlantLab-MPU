@@ -109,11 +109,19 @@ function UpdateDateTime(datetime){
     }
 }
 
+function UpdateMPUTime(){
+    if (auth.currentUser) {
+        let path = '/mids/' + mid + '/datetime/mpu';
+        db.ref(path).set( moment().format('YYYY-MM-DD HH:mm:ss') );
+    }
+}
+
 module.exports = {
     UpdateSensors,
     UpdateControl,
     UpdateMcuStatus,
     UpdateMemoryStatus,
     UpdateDateTime,
+    UpdateMPUTime,
     db,
 }
