@@ -1,5 +1,6 @@
 global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 const firebase = require('firebase');
+var moment = require('moment');
 
 require("firebase/auth");
 require("firebase/database");
@@ -51,6 +52,13 @@ function Init() {
                 GetIP().then(ip => {
                     db.ref(root + '/ip').set(ip);
                     GetLocation(ip).then(local => db.ref(root + '/local').set(local));
+
+                    let loginTime = '/mids/' + mid + '/datetime/login';
+                    db.ref(loginTime).set({
+                        date: moment().format('YYYY-MM-DD'),
+                        time: moment().format('HH:mm:ss')
+                    });
+
                 })
 
                 firebaseDB.Init(db);
@@ -94,11 +102,18 @@ function UpdateMemoryStatus(mem){
     }
 }
 
+function UpdateDateTime(datetime){
+    if (auth.currentUser) {
+        let path = '/mids/' + mid + '/datetime/current';
+        db.ref(path).set(datetime);
+    }
+}
 
 module.exports = {
     UpdateSensors,
     UpdateControl,
     UpdateMcuStatus,
+    UpdateMemoryStatus,
+    UpdateDateTime,
     db,
-    UpdateMemoryStatus
 }
