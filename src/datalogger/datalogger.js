@@ -123,6 +123,7 @@ function GetSparkLogger() {
     //     console.log(ex);
     //     return []
     // }
+
     return [];
 }
 

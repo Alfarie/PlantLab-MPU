@@ -87,10 +87,18 @@ function UpdateMcuStatus(mcu){
     }
 }
 
+function UpdateMemoryStatus(mem){
+    if (auth.currentUser) {
+        let path = '/mids/' + mid + '/memory';
+        db.ref(path).push(mem);
+    }
+}
+
 
 module.exports = {
     UpdateSensors,
     UpdateControl,
     UpdateMcuStatus,
-    db
+    db,
+    UpdateMemoryStatus
 }

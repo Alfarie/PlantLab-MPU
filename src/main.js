@@ -12,6 +12,8 @@ if (!exit) {
     var config = require('./args/config');
     var serial = require('./serial/serial');
     var firebase = require('./online/firebase');
+    var memory = require('./memory/memory')
+    var moment = require('moment');
     serial.Initialize();
 
     var mcu = require('./mcu/mcu');
@@ -46,6 +48,14 @@ if (!exit) {
             gpio: mcu.GetStatus().gpio
         });
     },2000);
+
+    setInterval( ()=>{
+        firebase.UpdateMemoryStatus({
+            datetime: moment().format('YYYY-MM-DD HH:mm:ss'),
+            os: memory.GetOSMemory(),
+            node: memory.GetNodeMemory()
+        })
+    },60000);
 
     var logger = require('./datalogger/datalogger');
     logger.Initialize(mcu,config);
