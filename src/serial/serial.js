@@ -49,7 +49,7 @@ function Exists(file) {
 function Connect(portName) {
     return new Promise((resolve, reject) => {
         port = new SerialPort(portName, {
-            baudRate: 38400,
+            baudRate: 115200,
             autoOpen: false,
             disconnectedCallback: function () {
                 console.log('You pulled the plug!');
