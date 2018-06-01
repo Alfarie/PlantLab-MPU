@@ -86,7 +86,7 @@ function SetSerialPort(serial) {
 //check is json format or plaintext
 function CommandVerify(cmd) {
 
-
+    console.log(cmd);
     if (cmd == 'RDY') {
         //Initialization Part
         console.log('[Info] Mcu status: RDY!');
@@ -117,7 +117,7 @@ function CommandVerify(cmd) {
     // if cmd is not json format
     else {
         var cmdarr = CmdProcess.SplitCommand(cmd);
-        console.log(cmdarr);
+        
         cmdarr.forEach(cmd => {
             var jsonCmd = CmdProcess.ExtractCommand(cmd);
             if (jsonCmd) {
