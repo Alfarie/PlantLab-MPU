@@ -95,6 +95,8 @@ function CommandVerify(cmd) {
             RequestRealTimeData(true);
         }, 2000);
 
+        serialport.setState('done');
+
     } else if (cmd.startsWith("INFO")) {
         let str = cmd.replace('INFO', '');
         console.log('[Info] Mcu board info: ', str);
@@ -124,6 +126,7 @@ function CommandVerify(cmd) {
                 if (jsonCmd.header == 'sensors')
                     GetSensorsSubject.next(jsonCmd.data);
                 serialport.setState('done');
+                
             } else {
                 console.log('[Warning] Unknown incoming data:', cmd);
             }
