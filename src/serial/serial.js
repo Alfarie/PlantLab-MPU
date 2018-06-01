@@ -144,6 +144,7 @@ function dispatch(){
         if(queue.length > 0){
             let cmd = queue.shift();
             port.write(cmd);
+            console.log(cmd);
             setState('sended')
         }
     }
