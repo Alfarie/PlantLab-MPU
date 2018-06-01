@@ -117,6 +117,7 @@ function CommandVerify(cmd) {
     // if cmd is not json format
     else {
         var cmdarr = CmdProcess.SplitCommand(cmd);
+        console.log(cmdarr);
         cmdarr.forEach(cmd => {
             var jsonCmd = CmdProcess.ExtractCommand(cmd);
             if (jsonCmd) {
