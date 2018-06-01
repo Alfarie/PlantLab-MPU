@@ -85,7 +85,6 @@ function SetSerialPort(serial) {
 
 //check is json format or plaintext
 function CommandVerify(cmd) {
-
     console.log(cmd);
     if (cmd == 'RDY') {
         //Initialization Part
@@ -94,8 +93,6 @@ function CommandVerify(cmd) {
             RequestControlSequence();
             RequestRealTimeData(true);
         }, 2000);
-
-        serialport.setState('done');
 
     } else if (cmd.startsWith("INFO")) {
         let str = cmd.replace('INFO', '');
@@ -125,13 +122,13 @@ function CommandVerify(cmd) {
             if (jsonCmd) {
                 if (jsonCmd.header == 'sensors')
                     GetSensorsSubject.next(jsonCmd.data);
-                serialport.setState('done');
                 
             } else {
                 console.log('[Warning] Unknown incoming data:', cmd);
             }
         });
     }
+    serialport.setState('done');
 }
 
 
