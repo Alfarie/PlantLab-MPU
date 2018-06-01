@@ -123,12 +123,12 @@ function CommandVerify(cmd) {
             if (jsonCmd) {
                 if (jsonCmd.header == 'sensors')
                     GetSensorsSubject.next(jsonCmd.data);
+                serialport.setState('done');
             } else {
                 console.log('[Warning] Unknown incoming data:', cmd);
             }
         });
     }
-    serialport.setState('done');
 }
 
 
