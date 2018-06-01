@@ -34,8 +34,8 @@ function GetStatus() {
     return statusModel;
 }
 
-function RequestRealTimeData(cmd) {
-    if (cmd) {
+function RequestRealTimeData(flag) {
+    if (flag) {
         realTimeRequestLoop = setInterval(() => {
             write.next('{Gsensors}')
             write.next('{Gdatetime}')
@@ -89,6 +89,7 @@ function CommandVerify(cmd) {
     if (cmd == 'RDY') {
         //Initialization Part
         console.log('[Info] Mcu status: RDY!');
+        RequestRealTimeData(true);
         setTimeout(() => {
             RequestControlSequence();
             RequestRealTimeData(true);
