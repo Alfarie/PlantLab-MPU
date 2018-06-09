@@ -89,12 +89,11 @@ function CommandVerify(cmd) {
     if (cmd == 'RDY') {
         //Initialization Part
         console.log('[Info] Mcu status: RDY!');
-        RequestRealTimeData(true);
+        RequestRealTimeData(false);
         setTimeout(() => {
             RequestControlSequence();
             RequestRealTimeData(true);
         }, 2000);
-
     } else if (cmd.startsWith("INFO")) {
         let str = cmd.replace('INFO', '');
         console.log('[Info] Mcu board info: ', str);
@@ -109,7 +108,6 @@ function CommandVerify(cmd) {
         else if (type == 'MANUAL') write.next('{Gcontrol,manual,' + ch + ',1}');
         else if (type == 'SETCAL') write.next('{getcal}');
         if (ch) write.next('{Gcontrol,channelstatus,' + ch + ',1}');
-        
     } else if (cmd == 'DONE') {
         console.log('[Info] Mcu status: REQUESTING DONE!');
         McuUpdated.next(true);
@@ -117,7 +115,6 @@ function CommandVerify(cmd) {
     // if cmd is not json format
     else {
         var cmdarr = CmdProcess.SplitCommand(cmd);
-        
         cmdarr.forEach(cmd => {
             var jsonCmd = CmdProcess.ExtractCommand(cmd);
             if (jsonCmd) {
