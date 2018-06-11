@@ -14,7 +14,7 @@
                 "-sp=/dev/ttyACM1",
                 "-prod",
                 "--loggerTime=60000",
-                "--iface=enp0s25"
+                "--iface=wlp4s0"
             ]
             
         },
@@ -27,7 +27,7 @@
                 "-sp=scan",
                 "-prod",
                 "--loggerTime=60000",
-                "--iface=enp0s25"
+                "--iface=wlp4s0"
             ],
         },
         {
