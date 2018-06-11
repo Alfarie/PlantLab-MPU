@@ -1,11 +1,11 @@
 var Rx = require('rxjs');
-
+var dns = require('dns');
 var Connection = new Rx.Subject();
 var state = 'undefined';
 
 function CheckConection() {
     return new Promise((resolve, reject) => {
-        require('dns').resolve('www.google.com', function (err) {
+        dns.resolve('www.google.com', function (err) {
             if (err) {
                 reject('disconnected');
             } else {
