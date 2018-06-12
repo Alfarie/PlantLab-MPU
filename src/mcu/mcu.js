@@ -85,7 +85,6 @@ function SetSerialPort(serial) {
 
 //check is json format or plaintext
 function CommandVerify(cmd) {
-    console.log(cmd);
     if (cmd == 'RDY') {
         //Initialization Part
         console.log('[Info] Mcu status: RDY!');
