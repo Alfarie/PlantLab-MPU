@@ -12,6 +12,7 @@ if (!exit) {
     var config = require('./args/config');
     var serial = require('./serial/serial');
     var firebase = require('./online/firebase');
+    var online = require('./online/online');
     var memory = require('./memory/memory')
     var moment = require('moment');
     serial.Initialize();
@@ -27,6 +28,7 @@ if (!exit) {
     mcu.Subject.GetSensorsSubject.subscribe( sensors =>{
         ws.io.to('0x01').emit('SENSORS', sensors);
         ws.io.to('0x01').emit('DATETIME', mcu.GetStatus().datetime);
+        ws.io.to('0x01').emit('CONNECTION', online.GetStateBoolean() );
         ws.io.to('0x01').emit('MEMORY', mcu.GetStatus().freeMemory);
         ws.io.to('0x01').emit('GPIO', mcu.GetStatus().gpio);
         ws.io.to('0x01').emit('WATER_PROCESS', mcu.GetStatus().waterStatus);

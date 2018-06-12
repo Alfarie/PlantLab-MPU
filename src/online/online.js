@@ -38,8 +38,13 @@ function GetState(){
     return state;
 }
 
+function GetStateBoolean(){
+    return (state == 'connected')?true:false;
+}
+
 module.exports = {
     CheckConection,
     Connection,
-    GetState
+    GetState,
+    GetStateBoolean
 }

@@ -42,3 +42,4 @@
         }
     ]
 }
+//sudo node src/main.js -sp=scan --loggerTime=600000 --iface=wlp4s0 -prod
