@@ -1,5 +1,5 @@
 var wpa_cli = require('wireless-tools/wpa_cli');
-
+var iface = require('../args/config').interface;
 var state = 'DISCONNECTED';
 var fs = require('fs');
 // var wpa_supplicant_dir = __dirname + '/wpa.conf';
@@ -35,7 +35,7 @@ function CurrentWifi(){
                 reject(err.message);
                 return;
             }
-            console.log(status);
+            // console.log(status);
             if(status.wpa_state == 'COMPLETED'){
                 resolve(status);
             }
@@ -57,7 +57,7 @@ function Connect(wifi) {
         var cmd = 'wpa_passphrase "' + wifi.ssid + '" "' + wifi.psk + '"';
         var stdout = execSync(cmd).toString();
         fs.appendFileSync(wpa_supplicant_dir, stdout);
-        stdout = execSync('wpa_cli -i wlan0 reconfigure');
+        stdout = execSync('wpa_cli -i '+ iface +' reconfigure');
         returnCheckStatus();
     }
     catch(e){
@@ -67,7 +67,7 @@ function Connect(wifi) {
 
 function Disconnet() {
     fs.writeFileSync(wpa_supplicant_dir, template);
-    stdout = execSync('wpa_cli -i wlan0 reconfigure');
+    stdout = execSync('wpa_cli -i '+ iface +' reconfigure');
     return stdout;
 }
 
@@ -80,7 +80,7 @@ function CheckStatus(){
                     reject(err);
                     return;
                 }
-                console.log(status);
+                // console.log(status);
                 if(status.wpa_state == 'COMPLETED'){
                     resolve(status);
                 }
