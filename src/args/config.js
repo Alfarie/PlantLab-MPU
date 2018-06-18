@@ -4,7 +4,7 @@ var production = false;
 
 var loggerDirectory = __dirname.replace('/src/args', '/Logger/');
 var loggerTime = 1000 * 60;
-var interface  = 'enp0s25'
+var interface  = 'wlp4s0'
 
 module.exports = {
     port,
