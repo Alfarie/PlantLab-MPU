@@ -97,7 +97,7 @@ function UpdateMcuStatus(mcu){
 
 function UpdateMemoryStatus(mem){
     if (auth.currentUser) {
-        let path = '/mids/' + mid + '/memory';
+        let path = '/memory-usage/' + mid + '/memory';
         db.ref(path).push(mem);
     }
 }
@@ -109,10 +109,21 @@ function UpdateDateTime(datetime){
     }
 }
 
+
+function UpdateSensorsDB(data){
+    if (auth.currentUser) {
+        let path = '/dbs/' + mid + '/'+ data.date;
+        db.ref(path).push(data);
+    }
+}
+
 function UpdateMPUTime(){
     if (auth.currentUser) {
         let path = '/mids/' + mid + '/datetime/mpu';
-        db.ref(path).set( moment().format('YYYY-MM-DD HH:mm:ss') );
+        db.ref(path).set( {
+            date:  moment().format('YYYY-MM-DD'),
+            time:   moment().format('HH:mm:ss')
+        } );
     }
 }
 
@@ -123,5 +134,6 @@ module.exports = {
     UpdateMemoryStatus,
     UpdateDateTime,
     UpdateMPUTime,
+    UpdateSensorsDB,
     db,
 }

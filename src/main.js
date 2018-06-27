@@ -59,9 +59,14 @@ if (!exit) {
             os: memory.GetOSMemory(),
             node: memory.GetNodeMemory()
         });
-        
     },60000);
-
+    setInterval( ()=>{
+        var data = mcu.GetSensors();
+        data['date'] = moment().format('YYYY-MM-DD');
+        data['time'] = moment().format('HH:mm:ss');
+        data['datetime'] = moment().format('YYYY-MM-DD HH:mm:ss');
+        firebase.UpdateSensorsDB(data);
+    },120000);
     var logger = require('./datalogger/datalogger');
     logger.Initialize(mcu,config);
 
