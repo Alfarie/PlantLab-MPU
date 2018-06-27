@@ -11,13 +11,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-iot-device-sdk": "^2.2.1",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
+    "deasync": "^0.1.13",
     "express": "^4.16.3",
     "express-json-csv": "0.0.3",
     "firebase": "^5.0.1",
     "getmac": "^1.4.1",
     "jsonwebtoken": "^8.2.0",
+    "macaddress": "^0.2.8",
     "moment": "^2.21.0",
     "node-where": "^1.1.0",
     "path": "^0.12.7",
@@ -26,6 +29,7 @@
     "serialport": "^6.1.1",
     "socket.io": "^2.0.4",
     "sqlite3": "^4.0.0",
+    "synchronize": "^2.0.0",
     "wireless-tools": "^0.19.0",
     "xmlhttprequest": "^1.8.0"
   }

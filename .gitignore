@@ -1,6 +1,7 @@
 node_modules/
 Logger/
 DB/
+cert/
 package-lock.json
 src/online/firebase.js
 src/online/firebase-api.js
